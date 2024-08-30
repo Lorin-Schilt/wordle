@@ -12,18 +12,18 @@ with open("wordlist.txt", encoding="utf-8") as f:
     words = f.read().split()
 
 word = random.choice(words)
+print(word)
 
 print("Willkommen bei Wordle. Errate das gesuchte Wort.")
 
 guess_number = 0
-
+allguesses = []
 done = False
 while not done:
     if guess_number > 5:
         done = True
     else:
         guess = input("> ").strip().upper()
-
         if len(guess) != 5:
             print("Das Wort muss fünf Buchstaben lang sein.")
         elif guess not in words:
@@ -48,7 +48,12 @@ while not done:
                     characters.remove(c)
 
             print("".join(results))
+            allguesses.append(results)
 
             if guess == word:
                 print(f"Du hast das Wort gefunden!")
                 done = True
+                for x in allguesses:
+                    print("".join(results))
+
+
